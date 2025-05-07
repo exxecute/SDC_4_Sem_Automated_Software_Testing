@@ -12,7 +12,7 @@ Feature: Brute Force Protection on Login Page
     And a message should indicate suspicious activity or need for CAPTCHA
 ```
 
-2. Session Timeout
+2. Session Management
 
 ```
 Feature: Session Timeout Handling
@@ -42,7 +42,7 @@ Feature: Cross-Browser Login Page Compatibility
       | Edge      |
 ```
 
-4. Password Field Security
+4. Password field security
 
 ```
 Feature: Password Field Masking
@@ -53,7 +53,7 @@ Feature: Password Field Masking
     Then the characters should be hidden and shown as dots or asterisks
 ```
 
-5. Redirect After Error Page Login
+5. Correctness of redirects after login
 
 ```
 Feature: Post-Login Redirection Handling
