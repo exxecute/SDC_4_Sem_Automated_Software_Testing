@@ -1,18 +1,18 @@
 # TASK1.1 Uladzislau Mikhayevich
 
-1. Защита от подбора пароля (Brute Force Protection)
-  - Проверить, блокируется ли учетная запись после нескольких неудачных попыток входа.
-  - Убедиться, что после нескольких неудачных попыток появляется CAPTCHA или другой механизм защиты.
+1. Brute Force Protection
+  - Check to see if the account is locked out after several failed login attempts.
+  - Verify that a CAPTCHA or other security mechanism appears after several failed attempts.
 
-2. Управление сессией
-  - Проверить, завершается ли сессия пользователя после определенного периода бездействия (например, 15-30 минут).
+2. Session Management
+  - Check whether the user session is terminated after a certain period of inactivity (e.g. 15-30 minutes).
 
-3. Кросс-браузерность и адаптивность
-  - Проверить работу логина в различных браузерах (Chrome, Firefox, Safari, Edge).
-  - Убедиться, что страница корректно работает на мобильных устройствах и разных размерах экранов.
+3. Cross-Browser Compatibility
+  - Test that the login works in different browsers (Chrome, Firefox, Safari, Edge).
+  - Make sure that the page works correctly on mobile devices and different screen sizes.
 
-4. Безопасность поля пароля
-  - Убедиться, что ввод пароля скрывается (заменяется символами).
+4. Password field security
+  - Ensure that the password entry is hidden (replaced by characters).
 
-5. Корректность редиректов после входа
-  - Убедиться, что после входа со страницы ошибки (например, 403 или 404) пользователь попадает на главную, а не остается на ошибочной странице.
+5. Correctness of redirects after login
+  - Make sure that after logging in from an error page (e.g., 403 or 404), the user is redirected to the main page and does not stay on the error page.
