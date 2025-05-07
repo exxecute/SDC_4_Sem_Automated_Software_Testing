@@ -26,23 +26,18 @@ public class Circle {
     }
 
     public Intersections getIntersections(final Circle other) {
-        int distance = (int)Math.sqrt(Math.pow((other.getX() - this.getX()), 2));
+        int distance = (int) Math.sqrt(Math.pow((other.getX() - this.getX()), 2));
         Intersections answer;
-        boolean isInRadius = this.isOtherInRadius(other);
         if (this.isAllIntersections(other, distance)) {
             answer = Intersections.ALL_INTERSECTIONS;
-        } else if(!isInRadius && this.isOtherFar(other, distance)) {
-            answer = Intersections.NO_INTERSECTIONS;
-        } else if (isInRadius && this.isOtherInNoIntersections(other, distance)) {
-            answer = Intersections.NO_INTERSECTIONS;
-        } else if (!isInRadius && this.isOneOutlineIntersection(other, distance)) {
-            answer = Intersections.ONE_INTERSECTION;
-        } else if (isInRadius && this.isOneInlineIntersection(other, distance)) {
-            answer = Intersections.ONE_INTERSECTION;
-        } else if (this.isTwoIntersections(other, distance)) {
+        } else if (this.isTwoIntersections(other, distance)){
             answer = Intersections.TWO_INTERSECTIONS;
         } else {
-            answer = Intersections.NO_INTERSECTIONS;
+            if(this.isOtherInRadius(other)) {
+                answer = this.getInlineIntersections(other, distance);
+            } else {
+                answer = this.getOutlineIntersections(other, distance);
+            }
         }
         return answer;
     }
@@ -53,6 +48,30 @@ public class Circle {
 
     public int getMostRightPoint() {
         return (this.getX() + this.getRadius());
+    }
+
+    private Intersections getInlineIntersections(final Circle other, final int distance) {
+        Intersections answer;
+        if (this.isOtherInNoIntersections(other, distance)) {
+            answer = Intersections.NO_INTERSECTIONS;
+        } else if (this.isOneInlineIntersection(other, distance)) {
+            answer = Intersections.ONE_INTERSECTION;
+        } else {
+            answer = Intersections.NO_INTERSECTIONS;
+        }
+        return answer;
+    }
+
+    private Intersections getOutlineIntersections(final Circle other, final int distance) {
+        Intersections answer;
+        if(this.isOtherFar(other, distance)) {
+            answer = Intersections.NO_INTERSECTIONS;
+        } else if (this.isOneOutlineIntersection(other, distance)) {
+            answer = Intersections.ONE_INTERSECTION;
+        } else {
+            answer = Intersections.NO_INTERSECTIONS;
+        }
+        return answer;
     }
 
     private boolean isOtherInRadius(final Circle other) {
