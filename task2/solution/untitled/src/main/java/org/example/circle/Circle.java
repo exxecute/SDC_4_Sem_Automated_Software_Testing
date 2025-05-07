@@ -26,7 +26,74 @@ public class Circle {
     }
 
     public Intersections getIntersections(final Circle other) {
-        
-        return Intersections.NO_INTERSECTIONS;
+        int distance = (int)Math.sqrt(Math.pow((other.getX() - this.getX()), 2));
+        Intersections answer;
+        System.out.println(distance);
+        boolean isInRadius = this.isOtherInRadius(other);
+        System.out.println(isInRadius);
+        if(!isInRadius && this.isOtherFar(other, distance)) {
+            answer = Intersections.NO_INTERSECTIONS;
+        } else if (isInRadius && this.isOtherInNoIntersections(other, distance)) {
+            answer = Intersections.NO_INTERSECTIONS;
+        } else if (!isInRadius && this.isOneOutlineIntersection(other, distance)) {
+            answer = Intersections.ONE_INTERSECTION;
+        } else if (isInRadius && this.isOneInlineIntersection(other, distance)) {
+            answer = Intersections.ONE_INTERSECTION;
+        } else if (this.isTwoIntersections(other, distance)) {
+            answer = Intersections.TWO_INTERSECTIONS;
+        } else if (this.isAllIntersections(other, distance)) {
+            answer = Intersections.ALL_INTERSECTIONS;
+        } else {
+            answer = Intersections.NO_INTERSECTIONS;
+        }
+        return answer;
+    }
+
+    public int getMostLeftPoint() {
+        return (this.getX() - this.getRadius());
+    }
+
+    public int getMostRightPoint() {
+        return (this.getX() + this.getRadius());
+    }
+
+    private boolean isOtherInRadius(final Circle other) {
+        int x, mostLeftPoint, mostRightPoint;
+        boolean isOtherBigger = (this.getRadius() < other.getRadius());
+
+        if(isOtherBigger) {
+            mostLeftPoint = other.getMostLeftPoint();
+            mostRightPoint = other.getMostRightPoint();
+            x = this.getX();
+        } else {
+            mostLeftPoint = this.getMostLeftPoint();
+            mostRightPoint = this.getMostRightPoint();
+            x = other.getX();
+        }
+        return (mostLeftPoint <= x && x <= mostRightPoint);
+    }
+
+    private boolean isOtherFar(final Circle other, final int distance) {
+        return (distance > (this.getRadius() + other.getRadius()));
+    }
+
+    private boolean isOtherInNoIntersections(final Circle other, final int distance) {
+        return (distance < Math.abs(this.getRadius() - other.getRadius()));
+    }
+
+    private boolean isOneOutlineIntersection(final Circle other, final int distance) {
+        return (distance == (this.getRadius() + other.getRadius()));
+    }
+
+    private boolean isOneInlineIntersection(final Circle other, final int distance) {
+        return (distance == Math.abs(this.getRadius() - other.getRadius()));
+    }
+
+    private boolean isTwoIntersections(final Circle other, final int distance) {
+        return ((distance < (this.getRadius() + other.getRadius())) && (distance > Math.abs(this.getRadius() - other.getRadius())));
+    }
+
+    private boolean isAllIntersections(final Circle other, final int distance) {
+        return ((distance == 0) && (this.getRadius() == other.getRadius()));
     }
 }
