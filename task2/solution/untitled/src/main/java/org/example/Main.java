@@ -6,11 +6,12 @@ import java.util.Scanner;
 
 public class Main {
     private static final String APPLICATION_HEADER = "TASK 2 Automated Software Testing Java, Uladzislau Mikhayevich JA2";
+    private static final String ENTER_PARAMS_MESSAGE = "Enter x1 r1 x2 r2 (separated by space):";
     public static void main(String[] args) {
         System.out.println(APPLICATION_HEADER);
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter x1 r1 x2 r2 (separated by space):");
+        System.out.println(ENTER_PARAMS_MESSAGE);
         int x1 = scanner.nextInt();
         int r1 = scanner.nextInt();
         int x2 = scanner.nextInt();
