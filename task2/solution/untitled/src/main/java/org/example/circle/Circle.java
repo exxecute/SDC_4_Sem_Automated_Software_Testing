@@ -28,9 +28,7 @@ public class Circle {
     public Intersections getIntersections(final Circle other) {
         int distance = (int)Math.sqrt(Math.pow((other.getX() - this.getX()), 2));
         Intersections answer;
-        System.out.println(distance);
         boolean isInRadius = this.isOtherInRadius(other);
-        System.out.println(isInRadius);
         if (this.isAllIntersections(other, distance)) {
             answer = Intersections.ALL_INTERSECTIONS;
         } else if(!isInRadius && this.isOtherFar(other, distance)) {
