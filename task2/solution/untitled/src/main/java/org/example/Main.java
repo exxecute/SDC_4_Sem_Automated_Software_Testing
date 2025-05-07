@@ -1,12 +1,29 @@
+/**
+ * @file Main.java
+ * @author Uladzislau Mikhayevich
+ * @brief Task 2 Automated Software Testing Java
+ */
 package org.example;
 
 import org.example.circle.Circle;
 
 import java.util.Scanner;
 
+/**
+ * @brief Main class
+ */
 public class Main {
+    /**
+     * @brief Application header
+     */
     private static final String APPLICATION_HEADER = "TASK 2 Automated Software Testing Java, Uladzislau Mikhayevich JA2";
+    /**
+     * @brief Enter params message
+     */
     private static final String ENTER_PARAMS_MESSAGE = "Enter x1 r1 x2 r2 (separated by space):";
+    /**
+     * @brief Main method
+     */
     public static void main(String[] args) {
         System.out.println(APPLICATION_HEADER);
 

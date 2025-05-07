@@ -1,9 +1,21 @@
+/**
+ * @file CircleIntersectionTest.java
+ * @brief Unit tests for CircleIntersection class
+ * @author Uladzislau Mikhayevich
+ */
+
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * @brief Unit tests for CircleIntersection class
+ */
 public class CircleIntersectionTest {
 
+    /**
+     * @brief Unit tests for getIntersectionPoints method
+     */
     @ParameterizedTest(name = "x1={0}, r1={1}, x2={2}, r2={3} => expected: {4}")
     @CsvSource({
         "0, 3, 6, 3, 1",
