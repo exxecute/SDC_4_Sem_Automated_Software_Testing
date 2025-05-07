@@ -31,7 +31,9 @@ public class Circle {
         System.out.println(distance);
         boolean isInRadius = this.isOtherInRadius(other);
         System.out.println(isInRadius);
-        if(!isInRadius && this.isOtherFar(other, distance)) {
+        if (this.isAllIntersections(other, distance)) {
+            answer = Intersections.ALL_INTERSECTIONS;
+        } else if(!isInRadius && this.isOtherFar(other, distance)) {
             answer = Intersections.NO_INTERSECTIONS;
         } else if (isInRadius && this.isOtherInNoIntersections(other, distance)) {
             answer = Intersections.NO_INTERSECTIONS;
@@ -41,8 +43,6 @@ public class Circle {
             answer = Intersections.ONE_INTERSECTION;
         } else if (this.isTwoIntersections(other, distance)) {
             answer = Intersections.TWO_INTERSECTIONS;
-        } else if (this.isAllIntersections(other, distance)) {
-            answer = Intersections.ALL_INTERSECTIONS;
         } else {
             answer = Intersections.NO_INTERSECTIONS;
         }
