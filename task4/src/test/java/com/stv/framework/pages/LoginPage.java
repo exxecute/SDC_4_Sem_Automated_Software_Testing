@@ -29,7 +29,6 @@ public class LoginPage {
     @FindBy(css = "iframe[src*='recaptcha']")
     private WebElement captchaIframe;
 
-
     public LoginPage() {
         this.driver = MyDriver.getDriver();
         this.driver.get(ConfigReader.get("base.url"));

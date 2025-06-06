@@ -17,8 +17,7 @@ public class BruteForceSteps {
         this.loginPage.acceptCookiesIfPresent();
         this.loginPage.clickAccountIcon();
     }
-
-
+    
     @When("the user enters new emails several times")
     public void theUserEntersNewEmailsSeveralTimes() {
         for (int i = 0; i < 20; i++) {
