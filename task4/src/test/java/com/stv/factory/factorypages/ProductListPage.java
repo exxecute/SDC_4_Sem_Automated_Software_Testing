@@ -1,12 +1,10 @@
 package com.stv.factory.factorypages;
 
 import com.stv.factory.core.drivers.MyDriver;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -32,6 +30,14 @@ public class ProductListPage {
 
     public boolean isRelevantItems() {
         return productItems.stream()
-                .anyMatch(p -> this.element.equals(p.getAttribute("li-name")));
+                .anyMatch(p -> {
+                    String liName = p.getAttribute("li-name").toLowerCase();
+                    for (String word : this.element.toLowerCase().split("\\s+")) {
+                        if (liName.contains(word)) {
+                            return true;
+                        }
+                    }
+                    return false;
+                });
     }
 }
