@@ -24,6 +24,10 @@ public class LoginPage {
     @FindBy(id = "onetrust-accept-btn-handler")
     private WebElement acceptCookies;
 
+    @FindBy(css = "iframe[src*='recaptcha']")
+    private WebElement captchaIframe;
+
+
     public LoginPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
@@ -42,11 +46,7 @@ public class LoginPage {
     }
 
     public boolean isCaptchaPresented() {
-        return !this.driver.findElements(By.cssSelector("iframe[src*='recaptcha']")).isEmpty();
-    }
-
-    public boolean isSecurityMessagePresent() {
-        return !this.driver.findElements(By.xpath("//*[contains(text(), 'security') or contains(text(), 'captcha') or contains(text(), 'verify')]")).isEmpty();
+        return this.wait.until(ExpectedConditions.visibilityOf(this.captchaIframe)) != null;
     }
 
     public void clickAccountIcon() {
