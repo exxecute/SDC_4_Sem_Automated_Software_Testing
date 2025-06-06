@@ -1,10 +1,7 @@
 package com.stv.factory.factorypages;
 
 import com.stv.factory.core.drivers.MyDriver;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -31,6 +28,9 @@ public class ProductListPage {
 
     @FindBy(css = "a.swipeNextClick.NextLink")
     private WebElement paginationNext;
+
+    @FindBy(id = "HeaderGroup")
+    private WebElement headerGroup;
 
     public ProductListPage() {
         this.driver = MyDriver.getDriver();
@@ -67,5 +67,14 @@ public class ProductListPage {
         } catch (TimeoutException e) {
             return false;
         }
+    }
+
+    public void goMainPage() throws InterruptedException {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("document.getElementById('HeaderGroup').style.display='block';");
+        Thread.sleep(1000); // Дать странице время на обновление
+
+        WebElement homeLink = driver.findElement(By.xpath("//a[@title='Home page']"));
+        js.executeScript("arguments[0].click();", homeLink);
     }
 }

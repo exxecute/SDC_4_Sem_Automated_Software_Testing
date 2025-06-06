@@ -51,8 +51,8 @@ public class NavigationAndPageInteractionSteps {
     }
 
     @When("the user returns to the main page")
-    public void theUserReturnsToTheMainPage() {
-        
+    public void theUserReturnsToTheMainPage() throws InterruptedException {
+        this.productListPage.goMainPage();
     }
 
     @Then("the main page should be at the bottom")
