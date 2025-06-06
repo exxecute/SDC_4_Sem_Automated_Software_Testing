@@ -35,7 +35,7 @@ public class BruteForceSteps {
             this.loginPage.getEmailField().sendKeys(NEW_EMAIL);
             this.loginPage.getEmailSubmitButton().click();
 
-            boolean isCaptchaPresent = driver.findElements(By.cssSelector("iframe[src*='recaptcha']")).size() > 0;
+            boolean isCaptchaPresent = this.loginPage.isCaptchaPresented();
 
             if (isCaptchaPresent) {
                 System.out.println("CAPTCHA detected — skipping further input.");
@@ -53,8 +53,8 @@ public class BruteForceSteps {
 
     @Then("the login should be blocked or an additional security measure should be presented")
     public void theLoginShouldBeBlockedOrAnAdditionalSecurityMeasureShouldBePresented() {
-        boolean isCaptchaPresent = this.driver.findElements(By.cssSelector("iframe[src*='recaptcha']")).size() > 0;
-        boolean isSecurityMessagePresent = this.driver.findElements(By.xpath("//*[contains(text(), 'security') or contains(text(), 'captcha') or contains(text(), 'verify')]")).size() > 0;
+        boolean isCaptchaPresent = this.loginPage.isCaptchaPresented();
+        boolean isSecurityMessagePresent = this.loginPage.isSecurityMessagePresent();
         boolean isSecurityMeasureTriggered = isCaptchaPresent || isSecurityMessagePresent;
 
         Assert.assertTrue(isSecurityMeasureTriggered, "Expected CAPTCHA or security measure was not detected.");

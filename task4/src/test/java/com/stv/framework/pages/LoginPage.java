@@ -36,6 +36,14 @@ public class LoginPage {
                 By.cssSelector(".dnnFormValidationSummary.field-validation-error")));
     }
 
+    public boolean isCaptchaPresented() {
+        return this.driver.findElements(By.cssSelector("iframe[src*='recaptcha']")).size() > 0;
+    }
+
+    public boolean isSecurityMessagePresent() {
+        return this.driver.findElements(By.xpath("//*[contains(text(), 'security') or contains(text(), 'captcha') or contains(text(), 'verify')]")).size() > 0;
+    }
+
     public void clickAccountIcon() {
         WebElement accountIcon = wait.until(ExpectedConditions.elementToBeClickable(By.id("loginMenu")));
         accountIcon.click();
