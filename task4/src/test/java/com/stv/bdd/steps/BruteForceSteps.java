@@ -30,16 +30,25 @@ public class BruteForceSteps {
 
     @When("the user enters new emails several times")
     public void theUserEntersNewEmailsSeveralTimes() {
-        this.loginPage.getEmailField().clear();
-        this.loginPage.getEmailField().sendKeys(NEW_EMAIL);
-        this.loginPage.getEmailSubmitButton().click();
+        for (int i = 0; i < 20; i++) {
+            this.loginPage.getEmailField().clear();
+            this.loginPage.getEmailField().sendKeys(NEW_EMAIL);
+            this.loginPage.getEmailSubmitButton().click();
 
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//        wait.until(ExpectedConditions.urlContains("id.wiggle.com/account/register"));
-//
-//        driver.navigate().back();
-//
-//        this.loginPage.getEmailField();
+            boolean isCaptchaPresent = driver.findElements(By.cssSelector("iframe[src*='recaptcha']")).size() > 0;
+
+            if (isCaptchaPresent) {
+                System.out.println("CAPTCHA detected — skipping further input.");
+                return;
+            }
+
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.urlContains("id.wiggle.com/account/register"));
+
+            driver.navigate().back();
+
+            this.loginPage.getEmailField();
+        }
     }
 
     @Then("the login should be blocked or an additional security measure should be presented")
