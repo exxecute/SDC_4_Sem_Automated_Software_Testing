@@ -9,8 +9,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Objects;
 
 public class ProductListPage {
+    private final static String DHB_CATEGORY_NAME = "Dhb";
     private WebDriver driver;
     private WebDriverWait wait;
     private String element;
@@ -18,26 +20,16 @@ public class ProductListPage {
     @FindBy(css = "#navlist > li")
     private List<WebElement> productItems;
 
+    @FindBy(id = "lblCategoryHeader")
+    private WebElement categoryHeader;
+
     public ProductListPage() {
         this.driver = MyDriver.getDriver();
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         PageFactory.initElements(driver, this);
     }
 
-    public void setElement(final String element) {
-        this.element = element;
-    }
-
-    public boolean isRelevantItems() {
-        return productItems.stream()
-                .anyMatch(p -> {
-                    String liName = p.getAttribute("li-name").toLowerCase();
-                    for (String word : this.element.toLowerCase().split("\\s+")) {
-                        if (liName.contains(word)) {
-                            return true;
-                        }
-                    }
-                    return false;
-                });
+    public boolean isDhbCategory() {
+        return Objects.equals(categoryHeader.getText(), DHB_CATEGORY_NAME);
     }
 }

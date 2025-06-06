@@ -1,13 +1,16 @@
 package com.stv.bdd.steps;
 
 import com.stv.factory.factorypages.HomePage;
+import com.stv.factory.factorypages.ProductListPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.testng.Assert;
 
 public class NavigationAndPageInteractionSteps {
     private HomePage homePage;
+    private ProductListPage productListPage;
 
     @Given("the user is on the main page")
     public void theUserIsOnTheMainPage() {
@@ -16,17 +19,19 @@ public class NavigationAndPageInteractionSteps {
     }
 
     @When("the user clicks on Available Now")
-    public void theUserClicksOnAvailableNow() throws InterruptedException {
-        this.homePage.scrollToAvailableNowButton();
+    public void theUserClicksOnAvailableNow() {
+        this.homePage.scrollToAvailableNowButtonAndClick();
     }
 
     @Then("a different page should open")
     public void aDifferentPageShouldOpen() {
-        
+        Assert.assertTrue(this.homePage.isNotMainPage());
     }
 
     @And("the page should contain the dhb section")
     public void thePageShouldContainTheDhbSection() {
+        this.productListPage = new ProductListPage();
+        Assert.assertTrue(this.productListPage.isDhbCategory());
     }
 
     @And("pagination controls should be visible")

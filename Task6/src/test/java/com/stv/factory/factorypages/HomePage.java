@@ -2,12 +2,14 @@ package com.stv.factory.factorypages;
 
 import com.stv.factory.core.drivers.MyDriver;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Objects;
 
 public class HomePage {
     private WebDriver driver;
@@ -20,7 +22,7 @@ public class HomePage {
     private WebElement searchBox;
 
     @FindBy(css = "a[href='/dhb']")
-    private WebElement availiableNowButton;
+    private WebElement availableNowButton;
 
     public HomePage() {
         this.driver = MyDriver.getDriver();
@@ -30,13 +32,15 @@ public class HomePage {
         PageFactory.initElements(driver, this);
     }
 
-    public void scrollToAvailableNowButton() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement button = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[href='/dhb']")));
-        Point location = button.getLocation();
-        long y = location.getY();
-        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, arguments[0]);", y + 600);
-        wait.until(ExpectedConditions.visibilityOf(button));
+    public void scrollToAvailableNowButtonAndClick() {
+        Actions actions = new Actions(this.driver);
+        actions.moveToElement(this.availableNowButton);
+        this.wait.until(ExpectedConditions.visibilityOf(this.availableNowButton));
+        this.availableNowButton.click();
+    }
+
+    public boolean isNotMainPage() {
+        return !Objects.equals(driver.getCurrentUrl(), System.getProperty("base.url"));
     }
 
     public void getSearchBox(final String element) {
