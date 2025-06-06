@@ -1,6 +1,7 @@
 package com.stv.factory.factorypages;
 
 import com.stv.factory.core.drivers.MyDriver;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -31,5 +32,10 @@ public class ProductListPage {
 
     public boolean isDhbCategory() {
         return Objects.equals(categoryHeader.getText(), DHB_CATEGORY_NAME);
+    }
+
+    public void scrollBottom() throws InterruptedException {
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
+        Thread.sleep(2000);
     }
 }
