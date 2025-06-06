@@ -7,4 +7,4 @@ Feature: Product Search and Filter
 
     Examples:
       | searchTerm |
-      | bike       |
+      | Bike       |

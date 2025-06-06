@@ -1,28 +1,43 @@
 package com.stv.factory.factorypages;
 
-import org.openqa.selenium.By;
+import com.stv.factory.core.drivers.MyDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class ProductListPage {
     private WebDriver driver;
     private WebDriverWait wait;
+    private String element;
 
-    public ProductListPage(WebDriver driver) {
-        this.driver = driver;
+    @FindBy(css = "#navlist > li")
+    private List<WebElement> productItems;
+
+    public ProductListPage() {
+        this.driver = MyDriver.getDriver();
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        PageFactory.initElements(driver, this);
     }
 
-    public WebElement getSearchBox() {
-        return this.wait.until(ExpectedConditions.elementToBeClickable(By.id("txtSearch")));
+    public void setElement(final String element) {
+        this.element = element;
     }
 
-    public WebElement getFilterElement(String element) {
-        return this.driver.findElement(By.xpath("//span[contains(@data-filtername, element)]"));
+    public boolean isRelevantItems() {
+        return productItems.stream()
+                .anyMatch(p -> {
+                    String liName = p.getAttribute("li-name").toLowerCase();
+                    for (String word : this.element.toLowerCase().split("\\s+")) {
+                        if (liName.contains(word)) {
+                            return true;
+                        }
+                    }
+                    return false;
+                });
     }
-
 }
