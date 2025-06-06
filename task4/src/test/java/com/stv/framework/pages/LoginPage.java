@@ -22,7 +22,7 @@ public class LoginPage {
     private WebElement accountIcon;
 
     @FindBy(id = "onetrust-accept-btn-handler")
-    private WebElement acceptCoockies;
+    private WebElement acceptCookies;
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -56,8 +56,8 @@ public class LoginPage {
 
     public void acceptCookiesIfPresent() {
         try {
-            this.wait.until(ExpectedConditions.visibilityOf(this.acceptCoockies));
-            this.acceptCoockies.click();
+            this.wait.until(ExpectedConditions.visibilityOf(this.acceptCookies));
+            this.acceptCookies.click();
         } catch (TimeoutException ignored) {}
     }
 }
