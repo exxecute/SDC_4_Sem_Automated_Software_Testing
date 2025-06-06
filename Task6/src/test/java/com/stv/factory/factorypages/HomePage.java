@@ -27,6 +27,9 @@ public class HomePage {
     @FindBy(id = "topMenu")
     private WebElement topMenu;
 
+    @FindBy(linkText = "Careers")
+    private WebElement careersLink;
+
     public HomePage() {
         this.driver = MyDriver.getDriver();
         this.driver.get(System.getProperty("base.url"));
@@ -65,8 +68,16 @@ public class HomePage {
     }
 
     public void careersClick() throws InterruptedException {
-        WebElement careersLink = driver.findElement(By.linkText("Careers"));
-        careersLink.click();
+        this.careersLink.click();
         Thread.sleep(2000);
+    }
+
+    public boolean isCareersVisible() {
+        try {
+            this.wait.until(ExpectedConditions.visibilityOf(this.careersLink));
+            return true;
+        } catch (TimeoutException ignored) {
+            return false;
+        }
     }
 }

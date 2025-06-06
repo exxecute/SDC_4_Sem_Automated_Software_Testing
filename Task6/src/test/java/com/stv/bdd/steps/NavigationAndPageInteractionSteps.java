@@ -89,9 +89,9 @@ public class NavigationAndPageInteractionSteps {
         Assert.assertTrue(this.homePage.isMainPage(), "It should be main page");
     }
 
-    @And("the Carriers section should be in focus")
-    public void theCarriersSectionShouldBeInFocus() {
-        
+    @And("the Carriers section should be visible")
+    public void theCarriersSectionShouldBeVisible() {
+        Assert.assertTrue(this.homePage.isCareersVisible(), "Careers should be visible");
     }
 
     @When("the user clicks the Wiggle logo at the bottom")

@@ -21,7 +21,7 @@ Feature: Navigation and page interaction on Wiggle main page
 
     When the user clicks the browser's back button
     Then the main page should be displayed
-    And the Carriers section should be in focus
+    And the Carriers section should be visible
 
     When the user clicks the Wiggle logo at the bottom
     Then the main page should be displayed at header
