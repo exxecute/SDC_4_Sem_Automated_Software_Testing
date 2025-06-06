@@ -1,10 +1,8 @@
 package com.stv.factory.factorypages;
 
 import com.stv.factory.core.drivers.MyDriver;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,12 +20,24 @@ public class HomePage {
     @FindBy(id = "txtSearch")
     private WebElement searchBox;
 
+    @FindBy(css = "a[href='/dhb']")
+    private WebElement availiableNowButton;
+
     public HomePage() {
         this.driver = MyDriver.getDriver();
         this.driver.get(System.getProperty("base.url"));
         this.driver.manage().window().maximize();
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         PageFactory.initElements(driver, this);
+    }
+
+    public void scrollToAvailiableNowButton() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement button = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[href='/dhb']")));
+        Point location = button.getLocation();
+        long y = location.getY();
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, arguments[0]);", y + 600);
+        wait.until(ExpectedConditions.visibilityOf(button));
     }
 
     public void getSearchBox(final String element) {
