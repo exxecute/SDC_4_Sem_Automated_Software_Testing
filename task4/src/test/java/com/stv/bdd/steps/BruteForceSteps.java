@@ -1,7 +1,7 @@
 package com.stv.bdd.steps;
 
-import com.stv.framework.pages.LoginPage;
-import com.stv.framework.pages.RegisterPage;
+import com.stv.factory.factorypages.LoginPage;
+import com.stv.factory.factorypages.RegisterPage;
 import io.cucumber.java.en.*;
 import org.testng.Assert;
 

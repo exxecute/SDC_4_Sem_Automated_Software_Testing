@@ -1,6 +1,6 @@
 package com.stv.bdd.runners;
 
-import com.stv.framework.core.drivers.MyDriver;
+import com.stv.factory.core.drivers.MyDriver;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.AfterClass;

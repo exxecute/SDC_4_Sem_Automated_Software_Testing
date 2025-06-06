@@ -1,7 +1,7 @@
-package com.stv.framework.pages;
+package com.stv.factory.factorypages;
 
-import com.stv.framework.core.drivers.MyDriver;
-import com.stv.framework.utils.ConfigReader;
+import com.stv.factory.core.drivers.MyDriver;
+import com.stv.factory.utils.ConfigReader;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;

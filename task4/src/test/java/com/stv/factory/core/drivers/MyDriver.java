@@ -1,4 +1,4 @@
-package com.stv.framework.core.drivers;
+package com.stv.factory.core.drivers;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
