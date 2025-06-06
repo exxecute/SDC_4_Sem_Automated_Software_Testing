@@ -29,8 +29,8 @@ public class ProductListPage {
     @FindBy(css = "a.swipeNextClick.NextLink")
     private WebElement paginationNext;
 
-    @FindBy(id = "HeaderGroup")
-    private WebElement headerGroup;
+    @FindBy(css = "a[title='Home page'][href='/']")
+    private WebElement homePageLogo;
 
     public ProductListPage() {
         this.driver = MyDriver.getDriver();
@@ -70,11 +70,10 @@ public class ProductListPage {
     }
 
     public void goMainPage() throws InterruptedException {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
+        JavascriptExecutor js = (JavascriptExecutor) this.driver;
         js.executeScript("document.getElementById('HeaderGroup').style.display='block';");
-        Thread.sleep(1000); // Дать странице время на обновление
+        Thread.sleep(1000);
 
-        WebElement homeLink = driver.findElement(By.xpath("//a[@title='Home page']"));
-        js.executeScript("arguments[0].click();", homeLink);
+        js.executeScript("arguments[0].click();", this.homePageLogo);
     }
 }
