@@ -30,6 +30,12 @@ public class HomePage {
     @FindBy(linkText = "Careers")
     private WebElement careersLink;
 
+    @FindBy(css = "div.footerLogo")
+    private WebElement footerHomePage;
+
+    @FindBy(id = "HeaderGroup")
+    private WebElement headerGroup;
+
     public HomePage() {
         this.driver = MyDriver.getDriver();
         this.driver.get(System.getProperty("base.url"));
@@ -49,10 +55,13 @@ public class HomePage {
         return Objects.equals(driver.getCurrentUrl(), System.getProperty("base.url"));
     }
 
-    public void getSearchBox(final String element) {
-        this.wait.until(ExpectedConditions.visibilityOf(this.searchBox));
-        this.searchBox.sendKeys(element);
-        this.searchBox.sendKeys(Keys.ENTER);
+    public boolean isHeaderGroupVisible() {
+        try {
+            this.wait.until(ExpectedConditions.visibilityOf(this.headerGroup));
+            return true;
+        } catch (TimeoutException ignored) {
+            return false;
+        }
     }
 
     public void acceptCookiesIfPresent() {
@@ -79,5 +88,9 @@ public class HomePage {
         } catch (TimeoutException ignored) {
             return false;
         }
+    }
+
+    public void footerLogoClick() {
+        this.footerHomePage.click();
     }
 }

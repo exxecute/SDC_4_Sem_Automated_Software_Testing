@@ -96,9 +96,11 @@ public class NavigationAndPageInteractionSteps {
 
     @When("the user clicks the Wiggle logo at the bottom")
     public void theUserClicksTheWiggleLogoAtTheBottom() {
+        this.homePage.footerLogoClick();
     }
 
     @Then("the main page should be displayed at header")
     public void theMainPageShouldBeDisplayedAtHeader() {
+        Assert.assertTrue(this.homePage.isHeaderGroupVisible());
     }
 }
