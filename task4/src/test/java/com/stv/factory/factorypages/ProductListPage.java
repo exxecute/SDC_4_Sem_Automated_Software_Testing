@@ -1,6 +1,8 @@
 package com.stv.factory.factorypages;
 
+import com.stv.factory.core.drivers.MyDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -12,17 +14,14 @@ public class ProductListPage {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    public ProductListPage(WebDriver driver) {
-        this.driver = driver;
+    public ProductListPage() {
+        this.driver = MyDriver.getDriver();
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
     }
 
-    public WebElement getSearchBox() {
-        return this.wait.until(ExpectedConditions.elementToBeClickable(By.id("txtSearch")));
+    public void getSearchBox(final String element) {
+        WebElement searchBox = this.wait.until(ExpectedConditions.elementToBeClickable(By.id("txtSearch")));
+        searchBox.sendKeys(element);
+        searchBox.sendKeys(Keys.ENTER);
     }
-
-    public WebElement getFilterElement(String element) {
-        return this.driver.findElement(By.xpath("//span[contains(@data-filtername, element)]"));
-    }
-
 }

@@ -1,5 +1,6 @@
 package com.stv.factory.factorypages;
 
+import com.stv.factory.core.drivers.MyDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -14,14 +15,12 @@ public class HomePage {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    public HomePage(WebDriver driver) {
-        this.driver = driver;
+    public HomePage() {
+        this.driver = MyDriver.getDriver();
+        this.driver.get(System.getProperty("base.url"));
+        this.driver.manage().window().maximize();
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
     }
-
-//    public WebElement getFilter() {
-////        return
-//    }
 
     public WebElement getSearchHeader() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h1")));
