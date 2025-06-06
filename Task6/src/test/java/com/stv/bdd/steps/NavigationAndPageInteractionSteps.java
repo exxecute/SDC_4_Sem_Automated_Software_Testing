@@ -37,6 +37,7 @@ public class NavigationAndPageInteractionSteps {
     @And("pagination controls should be visible")
     public void paginationControlsShouldBeVisible() throws InterruptedException {
         this.productListPage.scrollBottom();
+        Assert.assertTrue(this.productListPage.isPaginationVisible());
     }
 
     @When("the user clicks the next page arrow")

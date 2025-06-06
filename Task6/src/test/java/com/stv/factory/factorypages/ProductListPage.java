@@ -2,10 +2,12 @@ package com.stv.factory.factorypages;
 
 import com.stv.factory.core.drivers.MyDriver;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -24,6 +26,9 @@ public class ProductListPage {
     @FindBy(id = "lblCategoryHeader")
     private WebElement categoryHeader;
 
+    @FindBy(id = "divPagination")
+    private WebElement pagination;
+
     public ProductListPage() {
         this.driver = MyDriver.getDriver();
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
@@ -37,5 +42,15 @@ public class ProductListPage {
     public void scrollBottom() throws InterruptedException {
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
         Thread.sleep(2000);
+    }
+
+    public boolean isPaginationVisible() {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            wait.until(ExpectedConditions.visibilityOf(this.pagination));
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
 }
