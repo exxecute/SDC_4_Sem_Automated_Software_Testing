@@ -30,9 +30,8 @@ public class BruteForceSteps {
     @When("the user enters new emails several times")
     public void theUserEntersNewEmailsSeveralTimes() {
         for (int i = 0; i < 20; i++) {
-            this.loginPage.getEmailField().clear();
-            this.loginPage.getEmailField().sendKeys(NEW_EMAIL);
-            this.loginPage.getEmailSubmitButton().click();
+            this.loginPage.enterEmail(NEW_EMAIL);
+            this.loginPage.clickEmailSubmitButton();
 
             boolean isCaptchaPresent = this.loginPage.isCaptchaPresented();
 
@@ -43,7 +42,6 @@ public class BruteForceSteps {
 
             this.registerPage.waitPage();
             this.driver.navigate().back();
-            this.loginPage.getEmailField();
         }
     }
 

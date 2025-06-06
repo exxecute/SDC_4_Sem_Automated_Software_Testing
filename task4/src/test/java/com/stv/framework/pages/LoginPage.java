@@ -1,6 +1,8 @@
 package com.stv.framework.pages;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -10,25 +12,27 @@ public class LoginPage {
     private WebDriver driver;
     private WebDriverWait wait;
 
+    @FindBy(id = "Input_EmailAddress")
+    private WebElement emailField;
+
+    @FindBy(id = "emailSubmit")
+    private WebElement emailSubmitButton;
+
     public LoginPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        PageFactory.initElements(driver, this);
     }
 
-    public WebElement getEmailField() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Input_EmailAddress")));
+    public void enterEmail(final String email) {
+        this.wait.until(ExpectedConditions.visibilityOf(this.emailField));
+        this.emailField.clear();
+        this.emailField.sendKeys(email);
     }
 
-    public WebElement getPasswordField() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Login_Password")));
-    }
-
-    public WebElement getEmailSubmitButton() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("emailSubmit")));
-    }
-
-    public WebElement getSignInButton() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("LoginButton")));
+    public void clickEmailSubmitButton() {
+        this.wait.until(ExpectedConditions.visibilityOf(this.emailSubmitButton));
+        this.emailSubmitButton.click();
     }
 
     public WebElement getErrorMessage() {
