@@ -1,4 +1,4 @@
-package com.stv.framework.pages;
+package com.stv.factory.factorypages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

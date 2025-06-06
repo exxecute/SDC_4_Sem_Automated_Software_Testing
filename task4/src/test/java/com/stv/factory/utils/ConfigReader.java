@@ -1,4 +1,4 @@
-package com.stv.framework.utils;
+package com.stv.factory.utils;
 
 import java.io.FileInputStream;
 import java.io.IOException;

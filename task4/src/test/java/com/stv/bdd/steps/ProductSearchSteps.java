@@ -1,18 +1,12 @@
 package com.stv.bdd.steps;
 
-import com.stv.framework.core.drivers.MyDriver;
-import com.stv.framework.pages.HomePage;
-import com.stv.framework.pages.ProductListPage;
-import com.stv.framework.utils.ConfigReader;
+import com.stv.factory.core.drivers.MyDriver;
+import com.stv.factory.factorypages.HomePage;
+import com.stv.factory.factorypages.ProductListPage;
+import com.stv.factory.utils.ConfigReader;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-import io.cucumber.java.After;
-
-
-import java.time.Duration;
 
 public class ProductSearchSteps {
 
