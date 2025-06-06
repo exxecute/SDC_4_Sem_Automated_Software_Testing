@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 @CucumberOptions(
-        features = "src/test/resources/features",
+        features = "src/test/java/com/stv/features",
         glue = "com.stv.bdd.steps"
 )
 public class TestRunner extends AbstractTestNGCucumberTests {

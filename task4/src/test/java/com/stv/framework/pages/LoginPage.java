@@ -1,5 +1,7 @@
 package com.stv.framework.pages;
 
+import com.stv.framework.core.drivers.MyDriver;
+import com.stv.framework.utils.ConfigReader;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -28,8 +30,10 @@ public class LoginPage {
     private WebElement captchaIframe;
 
 
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
+    public LoginPage() {
+        this.driver = MyDriver.getDriver();
+        this.driver.get(ConfigReader.get("base.url"));
+        this.driver.manage().window().maximize();
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         PageFactory.initElements(driver, this);
     }

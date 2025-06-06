@@ -1,27 +1,19 @@
 package com.stv.bdd.steps;
 
-import com.stv.framework.core.drivers.MyDriver;
 import com.stv.framework.pages.LoginPage;
 import com.stv.framework.pages.RegisterPage;
-import com.stv.framework.utils.ConfigReader;
 import io.cucumber.java.en.*;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 public class BruteForceSteps {
     private final static String NEW_EMAIL = "NewEmail@nmail.eu";
-    private WebDriver driver;
     private LoginPage loginPage;
     private RegisterPage registerPage;
 
     @Given("the user is on the login page")
     public void theUserIsOnTheLoginPage() {
-        this.driver = MyDriver.getDriver();
-        this.driver.get(ConfigReader.get("base.url"));
-        this.driver.manage().window().maximize();
-
-        this.registerPage = new RegisterPage(this.driver);
-        this.loginPage = new LoginPage(this.driver);
+        this.registerPage = new RegisterPage();
+        this.loginPage = new LoginPage();
         this.loginPage.acceptCookiesIfPresent();
         this.loginPage.clickAccountIcon();
     }
@@ -41,7 +33,7 @@ public class BruteForceSteps {
             }
 
             this.registerPage.waitPage();
-            this.driver.navigate().back();
+            this.registerPage.navigateBack();
         }
     }
 
