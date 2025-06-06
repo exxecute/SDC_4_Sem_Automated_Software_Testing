@@ -29,4 +29,8 @@ public class ProductListPage {
         this.searchBox.sendKeys(element);
         this.searchBox.sendKeys(Keys.ENTER);
     }
+
+    public boolean isRelevantItems() {
+        return true;
+    }
 }

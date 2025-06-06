@@ -6,13 +6,12 @@ import io.cucumber.java.en.*;
 import org.testng.Assert;
 
 public class ProductSearchSteps {
-    private HomePage homePage;
     private ProductListPage productListPage;
 
     @Given("the user is on the homepage")
     public void theUserIsOnTheHomepage() {
-        this.homePage = new HomePage();
-        this.homePage.acceptCookiesIfPresent();
+        HomePage homePage = new HomePage();
+        homePage.acceptCookiesIfPresent();
         this.productListPage = new ProductListPage();
     }
 
@@ -21,10 +20,8 @@ public class ProductSearchSteps {
         this.productListPage.getSearchBox(searchTerm);
     }
 
-    @Then("the filtered product list should contain relevant items")
-    public void verifyFilteredResults() {
-//        List<WebElement> products = productListPage.getProducts();
-//        Assert.assertTrue(products.size() > 0, "No products found after applying filter.");
-        Assert.assertTrue(true, "123");
+    @Then("the product list should contain relevant items")
+    public void theProductListShouldContainRelevantItems() {
+        Assert.assertTrue(this.productListPage.isRelevantItems(), "Not contains relevant items");
     }
 }
