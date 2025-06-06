@@ -38,6 +38,6 @@ public class BruteForceSteps {
 
     @Then("the login should be blocked or an additional security measure should be presented")
     public void theLoginShouldBeBlockedOrAnAdditionalSecurityMeasureShouldBePresented() {
-        Assert.assertTrue(this.loginPage.isCaptchaPresented(), "Expected CAPTCHA or security measure was not detected.");
+        Assert.assertTrue(this.loginPage.isCaptchaPresented(), "Expected CAPTCHA or security measure was not detected. ");
     }
 }
