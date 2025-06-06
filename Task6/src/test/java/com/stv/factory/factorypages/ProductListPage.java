@@ -29,6 +29,9 @@ public class ProductListPage {
     @FindBy(id = "divPagination")
     private WebElement pagination;
 
+    @FindBy(css = "a.swipeNextClick.NextLink")
+    private WebElement paginationNext;
+
     public ProductListPage() {
         this.driver = MyDriver.getDriver();
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
@@ -52,5 +55,9 @@ public class ProductListPage {
         } catch (TimeoutException e) {
             return false;
         }
+    }
+
+    public void paginationNextClick() {
+        this.paginationNext.click();
     }
 }

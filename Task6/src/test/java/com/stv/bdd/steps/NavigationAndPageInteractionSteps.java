@@ -42,7 +42,7 @@ public class NavigationAndPageInteractionSteps {
 
     @When("the user clicks the next page arrow")
     public void theUserClicksTheNextPageArrow() {
-        
+        this.productListPage.paginationNextClick();
     }
 
     @Then("the page should scroll to the top")
