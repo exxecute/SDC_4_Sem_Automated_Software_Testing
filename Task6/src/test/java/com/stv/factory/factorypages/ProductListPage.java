@@ -8,17 +8,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.List;
 import java.util.Objects;
 
 public class ProductListPage {
     private final static String DHB_CATEGORY_NAME = "Dhb";
     private WebDriver driver;
     private WebDriverWait wait;
-    private String element;
-
-    @FindBy(css = "#navlist > li")
-    private List<WebElement> productItems;
 
     @FindBy(id = "lblCategoryHeader")
     private WebElement categoryHeader;
@@ -42,9 +37,8 @@ public class ProductListPage {
         return Objects.equals(categoryHeader.getText(), DHB_CATEGORY_NAME);
     }
 
-    public void scrollBottom() throws InterruptedException {
+    public void scrollBottom() {
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
-        Thread.sleep(2000);
     }
 
     public boolean isPaginationVisible() {
@@ -69,10 +63,9 @@ public class ProductListPage {
         }
     }
 
-    public void goMainPage() throws InterruptedException {
+    public void goMainPage() {
         JavascriptExecutor js = (JavascriptExecutor) this.driver;
         js.executeScript("document.getElementById('HeaderGroup').style.display='block';");
-        Thread.sleep(1000);
 
         js.executeScript("arguments[0].click();", this.homePageLogo);
     }

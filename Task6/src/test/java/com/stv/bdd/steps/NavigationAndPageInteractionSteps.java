@@ -37,7 +37,7 @@ public class NavigationAndPageInteractionSteps {
     }
 
     @And("pagination controls should be visible")
-    public void paginationControlsShouldBeVisible() throws InterruptedException {
+    public void paginationControlsShouldBeVisible()  {
         this.productListPage.scrollBottom();
         Assert.assertTrue(this.productListPage.isPaginationVisible(), "Pagination should be visible");
     }
@@ -53,12 +53,12 @@ public class NavigationAndPageInteractionSteps {
     }
 
     @When("the user returns to the main page")
-    public void theUserReturnsToTheMainPage() throws InterruptedException {
+    public void theUserReturnsToTheMainPage() {
         this.productListPage.goMainPage();
     }
 
     @When("the user scroll to the bottom")
-    public void theUserScrollToTheBottom() throws InterruptedException {
+    public void theUserScrollToTheBottom() {
         this.homePage.scrollBottom();
     }
 
@@ -68,7 +68,7 @@ public class NavigationAndPageInteractionSteps {
     }
 
     @When("the user clicks on Carriers")
-    public void theUserClicksOnCarriers() throws InterruptedException {
+    public void theUserClicksOnCarriers() {
         this.homePage.careersClick();
     }
 
@@ -101,6 +101,6 @@ public class NavigationAndPageInteractionSteps {
 
     @Then("the main page should be displayed at header")
     public void theMainPageShouldBeDisplayedAtHeader() {
-        Assert.assertTrue(this.homePage.isHeaderGroupVisible());
+        Assert.assertTrue(this.homePage.isHeaderGroupVisible(), "It's not at top of the page");
     }
 }

@@ -18,9 +18,6 @@ public class HomePage {
     @FindBy(id = "onetrust-accept-btn-handler")
     private WebElement acceptCookies;
 
-    @FindBy(id = "txtSearch")
-    private WebElement searchBox;
-
     @FindBy(css = "a[href='/dhb']")
     private WebElement availableNowButton;
 
@@ -71,14 +68,12 @@ public class HomePage {
         } catch (TimeoutException ignored) {}
     }
 
-    public void scrollBottom() throws InterruptedException {
+    public void scrollBottom() {
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
-        Thread.sleep(2000);
     }
 
-    public void careersClick() throws InterruptedException {
+    public void careersClick() {
         this.careersLink.click();
-        Thread.sleep(2000);
     }
 
     public boolean isCareersVisible() {
