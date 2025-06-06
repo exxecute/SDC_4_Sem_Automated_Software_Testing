@@ -50,6 +50,7 @@ public class LoginPage {
     }
 
     public boolean isCaptchaPresented() {
+        this.captchas.clear();
         this.captchas.addAll(driver.findElements(By.cssSelector("iframe[src*='recaptcha']")));
         return this.captchas.size() > 1;
     }
