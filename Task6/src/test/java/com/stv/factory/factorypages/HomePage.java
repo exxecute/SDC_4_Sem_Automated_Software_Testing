@@ -24,6 +24,9 @@ public class HomePage {
     @FindBy(css = "a[href='/dhb']")
     private WebElement availableNowButton;
 
+    @FindBy(id = "topMenu")
+    private WebElement topMenu;
+
     public HomePage() {
         this.driver = MyDriver.getDriver();
         this.driver.get(System.getProperty("base.url"));
@@ -39,8 +42,8 @@ public class HomePage {
         this.availableNowButton.click();
     }
 
-    public boolean isNotMainPage() {
-        return !Objects.equals(driver.getCurrentUrl(), System.getProperty("base.url"));
+    public boolean isMainPage() {
+        return Objects.equals(driver.getCurrentUrl(), System.getProperty("base.url"));
     }
 
     public void getSearchBox(final String element) {

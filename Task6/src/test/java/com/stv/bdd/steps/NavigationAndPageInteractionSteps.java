@@ -25,7 +25,7 @@ public class NavigationAndPageInteractionSteps {
 
     @Then("a different page should open")
     public void aDifferentPageShouldOpen() {
-        Assert.assertTrue(this.homePage.isNotMainPage());
+        Assert.assertFalse(this.homePage.isMainPage());
     }
 
     @And("the page should contain the dhb section")
@@ -55,9 +55,13 @@ public class NavigationAndPageInteractionSteps {
         this.productListPage.goMainPage();
     }
 
-    @Then("the main page should be at the bottom")
-    public void theMainPageShouldBeAtTheBottom() {
-        
+    @When("the user scroll to the bottom")
+    public void theUserScrollToTheBottom() {
+
+    }
+
+    @Then("pagination controls shouldn't be visible")
+    public void paginationControlsShouldnTBeVisible() {
     }
 
     @When("the user clicks on Carriers")
@@ -77,7 +81,7 @@ public class NavigationAndPageInteractionSteps {
 
     @Then("the main page should be displayed")
     public void theMainPageShouldBeDisplayed() {
-        
+        Assert.assertTrue(this.homePage.isMainPage());
     }
 
     @And("the Carriers section should be in focus")

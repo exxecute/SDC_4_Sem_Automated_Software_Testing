@@ -11,7 +11,10 @@ Feature: Navigation and page interaction on Wiggle main page
     Then the page should scroll to the top
 
     When the user returns to the main page
-    Then the main page should be at the bottom
+    Then the main page should be displayed
+
+    When the user scroll to the bottom
+    Then pagination controls shouldn't be visible
 
     When the user clicks on Carriers
     Then a new page should open
