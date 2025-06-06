@@ -1,8 +1,6 @@
 package com.stv.bdd.steps;
 
 import com.stv.factory.factorypages.HomePage;
-import com.stv.factory.factorypages.LoginPage;
-import com.stv.factory.factorypages.RegisterPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -19,7 +17,7 @@ public class NavigationAndPageInteractionSteps {
 
     @When("the user clicks on Available Now")
     public void theUserClicksOnAvailableNow() throws InterruptedException {
-        this.homePage.scrollToAvailiableNowButton();
+        this.homePage.scrollToAvailableNowButton();
     }
 
     @Then("a different page should open")

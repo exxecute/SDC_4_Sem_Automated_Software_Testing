@@ -2,7 +2,6 @@ package com.stv.factory.factorypages;
 
 import com.stv.factory.core.drivers.MyDriver;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -31,7 +30,7 @@ public class HomePage {
         PageFactory.initElements(driver, this);
     }
 
-    public void scrollToAvailiableNowButton() throws InterruptedException {
+    public void scrollToAvailableNowButton() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement button = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[href='/dhb']")));
         Point location = button.getLocation();
