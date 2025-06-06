@@ -12,6 +12,7 @@ import org.testng.Assert;
 public class NavigationAndPageInteractionSteps {
     private HomePage homePage;
     private ProductListPage productListPage;
+    private CareersPage careersPage;
 
     @Given("the user is on the main page")
     public void theUserIsOnTheMainPage() {
@@ -74,18 +75,18 @@ public class NavigationAndPageInteractionSteps {
     @Then("a new page should open")
     public void aNewPageShouldOpen() {
         Assert.assertFalse(this.homePage.isMainPage(), "It shouldn't be main page");
-        CareersPage careersPage = new CareersPage();
+        this.careersPage = new CareersPage();
         Assert.assertTrue(careersPage.isCareersPage(), "It isn't careers page");
     }
 
     @When("the user clicks the browser's back button")
     public void theUserClicksTheBrowserSBackButton() {
-        
+        this.careersPage.browserGoBack();
     }
 
     @Then("the main page should be displayed")
     public void theMainPageShouldBeDisplayed() {
-//        Assert.assertTrue(this.homePage.isMainPage(), "It shouldn't be main page");
+        Assert.assertTrue(this.homePage.isMainPage(), "It should be main page");
     }
 
     @And("the Carriers section should be in focus")

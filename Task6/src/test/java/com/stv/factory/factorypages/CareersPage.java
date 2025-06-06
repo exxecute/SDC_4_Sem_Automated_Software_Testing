@@ -33,4 +33,8 @@ public class CareersPage {
             return false;
         }
     }
+
+    public void browserGoBack() {
+        this.driver.navigate().back();
+    }
 }
