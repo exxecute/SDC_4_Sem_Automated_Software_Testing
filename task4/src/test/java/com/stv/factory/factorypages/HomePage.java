@@ -1,41 +1,35 @@
 package com.stv.factory.factorypages;
 
 import com.stv.factory.core.drivers.MyDriver;
-import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.List;
 
 public class HomePage {
     private WebDriver driver;
     private WebDriverWait wait;
+
+    @FindBy(id = "onetrust-accept-btn-handler")
+    private WebElement acceptCookies;
 
     public HomePage() {
         this.driver = MyDriver.getDriver();
         this.driver.get(System.getProperty("base.url"));
         this.driver.manage().window().maximize();
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-    }
-
-    public WebElement getSearchHeader() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h1")));
-    }
-
-    public WebElement getFirstProduct() {
-        List<WebElement> products = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(
-                By.cssSelector("span.productdescriptionname")));
-        return products.get(0);
+        PageFactory.initElements(driver, this);
     }
 
     public void acceptCookiesIfPresent() {
         try {
-            WebElement acceptCookies = wait.until(ExpectedConditions.elementToBeClickable(By.id("onetrust-accept-btn-handler")));
-            acceptCookies.click();
+            this.wait.until(ExpectedConditions.visibilityOf(this.acceptCookies));
+            this.acceptCookies.click();
         } catch (TimeoutException ignored) {}
     }
 }

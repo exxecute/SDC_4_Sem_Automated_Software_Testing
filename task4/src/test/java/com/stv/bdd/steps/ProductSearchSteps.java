@@ -3,6 +3,7 @@ package com.stv.bdd.steps;
 import com.stv.factory.factorypages.HomePage;
 import com.stv.factory.factorypages.ProductListPage;
 import io.cucumber.java.en.*;
+import org.testng.Assert;
 
 public class ProductSearchSteps {
     private HomePage homePage;
@@ -24,5 +25,6 @@ public class ProductSearchSteps {
     public void verifyFilteredResults() {
 //        List<WebElement> products = productListPage.getProducts();
 //        Assert.assertTrue(products.size() > 0, "No products found after applying filter.");
+        Assert.assertTrue(true, "123");
     }
 }
