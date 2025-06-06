@@ -58,4 +58,9 @@ public class HomePage {
             this.acceptCookies.click();
         } catch (TimeoutException ignored) {}
     }
+
+    public void scrollBottom() throws InterruptedException {
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
+        Thread.sleep(2000);
+    }
 }

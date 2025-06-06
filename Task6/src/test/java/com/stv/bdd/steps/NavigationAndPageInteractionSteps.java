@@ -56,12 +56,13 @@ public class NavigationAndPageInteractionSteps {
     }
 
     @When("the user scroll to the bottom")
-    public void theUserScrollToTheBottom() {
-
+    public void theUserScrollToTheBottom() throws InterruptedException {
+        this.homePage.scrollBottom();
     }
 
     @Then("pagination controls shouldn't be visible")
     public void paginationControlsShouldnTBeVisible() {
+        Assert.assertFalse(this.productListPage.isPaginationVisible());
     }
 
     @When("the user clicks on Carriers")
