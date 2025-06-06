@@ -49,8 +49,7 @@ public class ProductListPage {
 
     public boolean isPaginationVisible() {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            wait.until(ExpectedConditions.visibilityOf(this.pagination));
+            this.wait.until(ExpectedConditions.visibilityOf(this.pagination));
             return true;
         } catch (TimeoutException e) {
             return false;
@@ -59,5 +58,14 @@ public class ProductListPage {
 
     public void paginationNextClick() {
         this.paginationNext.click();
+    }
+
+    public boolean isOnTop() {
+        try {
+            this.wait.until(ExpectedConditions.visibilityOf(this.categoryHeader));
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
 }

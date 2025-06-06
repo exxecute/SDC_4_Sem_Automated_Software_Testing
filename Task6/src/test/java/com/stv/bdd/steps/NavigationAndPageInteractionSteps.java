@@ -47,7 +47,7 @@ public class NavigationAndPageInteractionSteps {
 
     @Then("the page should scroll to the top")
     public void thePageShouldScrollToTheTop() {
-        
+        Assert.assertTrue(this.productListPage.isOnTop());
     }
 
     @When("the user returns to the main page")
