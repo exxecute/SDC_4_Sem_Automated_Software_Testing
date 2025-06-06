@@ -5,13 +5,8 @@ import com.stv.framework.pages.LoginPage;
 import com.stv.framework.pages.RegisterPage;
 import com.stv.framework.utils.ConfigReader;
 import io.cucumber.java.en.*;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
-import java.time.Duration;
 
 public class BruteForceSteps {
     private final static String NEW_EMAIL = "NewEmail@nmail.eu";
