@@ -10,13 +10,15 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class ProductListPage {
     private WebDriver driver;
     private WebDriverWait wait;
+    private String element;
 
-    @FindBy(id = "txtSearch")
-    private WebElement searchBox;
+    @FindBy(css = "#navlist > li")
+    private List<WebElement> productItems;
 
     public ProductListPage() {
         this.driver = MyDriver.getDriver();
@@ -24,13 +26,12 @@ public class ProductListPage {
         PageFactory.initElements(driver, this);
     }
 
-    public void getSearchBox(final String element) {
-        this.wait.until(ExpectedConditions.visibilityOf(this.searchBox));
-        this.searchBox.sendKeys(element);
-        this.searchBox.sendKeys(Keys.ENTER);
+    public void setElement(final String element) {
+        this.element = element;
     }
 
     public boolean isRelevantItems() {
-        return true;
+        return productItems.stream()
+                .anyMatch(p -> this.element.equals(p.getAttribute("li-name")));
     }
 }
