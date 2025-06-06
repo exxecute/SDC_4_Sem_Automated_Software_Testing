@@ -63,4 +63,10 @@ public class HomePage {
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
         Thread.sleep(2000);
     }
+
+    public void careersClick() throws InterruptedException {
+        WebElement careersLink = driver.findElement(By.linkText("Careers"));
+        careersLink.click();
+        Thread.sleep(2000);
+    }
 }

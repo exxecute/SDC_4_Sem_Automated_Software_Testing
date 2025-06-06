@@ -25,19 +25,19 @@ public class NavigationAndPageInteractionSteps {
 
     @Then("a different page should open")
     public void aDifferentPageShouldOpen() {
-        Assert.assertFalse(this.homePage.isMainPage());
+        Assert.assertFalse(this.homePage.isMainPage(), "A different page should open");
     }
 
     @And("the page should contain the dhb section")
     public void thePageShouldContainTheDhbSection() {
         this.productListPage = new ProductListPage();
-        Assert.assertTrue(this.productListPage.isDhbCategory());
+        Assert.assertTrue(this.productListPage.isDhbCategory(), "It should be Dhb category");
     }
 
     @And("pagination controls should be visible")
     public void paginationControlsShouldBeVisible() throws InterruptedException {
         this.productListPage.scrollBottom();
-        Assert.assertTrue(this.productListPage.isPaginationVisible());
+        Assert.assertTrue(this.productListPage.isPaginationVisible(), "Pagination should be visible");
     }
 
     @When("the user clicks the next page arrow")
@@ -47,7 +47,7 @@ public class NavigationAndPageInteractionSteps {
 
     @Then("the page should scroll to the top")
     public void thePageShouldScrollToTheTop() {
-        Assert.assertTrue(this.productListPage.isOnTop());
+        Assert.assertTrue(this.productListPage.isOnTop(), "You should be on the top of the page");
     }
 
     @When("the user returns to the main page")
@@ -62,17 +62,17 @@ public class NavigationAndPageInteractionSteps {
 
     @Then("pagination controls shouldn't be visible")
     public void paginationControlsShouldnTBeVisible() {
-        Assert.assertFalse(this.productListPage.isPaginationVisible());
+        Assert.assertFalse(this.productListPage.isPaginationVisible(), "Pagination shouldn't be visible");
     }
 
     @When("the user clicks on Carriers")
-    public void theUserClicksOnCarriers() {
-        
+    public void theUserClicksOnCarriers() throws InterruptedException {
+        this.homePage.careersClick();
     }
 
     @Then("a new page should open")
     public void aNewPageShouldOpen() {
-        
+        Assert.assertFalse(this.homePage.isMainPage(), "It shouldn't be main page");
     }
 
     @When("the user clicks the browser's back button")
@@ -82,7 +82,7 @@ public class NavigationAndPageInteractionSteps {
 
     @Then("the main page should be displayed")
     public void theMainPageShouldBeDisplayed() {
-        Assert.assertTrue(this.homePage.isMainPage());
+        Assert.assertTrue(this.homePage.isMainPage(), "It shouldn't be main page");
     }
 
     @And("the Carriers section should be in focus")
