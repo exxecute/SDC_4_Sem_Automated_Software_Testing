@@ -18,6 +18,12 @@ public class LoginPage {
     @FindBy(id = "emailSubmit")
     private WebElement emailSubmitButton;
 
+    @FindBy(id = "loginMenu")
+    private WebElement accountIcon;
+
+    @FindBy(id = "onetrust-accept-btn-handler")
+    private WebElement acceptCoockies;
+
     public LoginPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
@@ -35,28 +41,23 @@ public class LoginPage {
         this.emailSubmitButton.click();
     }
 
-    public WebElement getErrorMessage() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.cssSelector(".dnnFormValidationSummary.field-validation-error")));
-    }
-
     public boolean isCaptchaPresented() {
-        return this.driver.findElements(By.cssSelector("iframe[src*='recaptcha']")).size() > 0;
+        return !this.driver.findElements(By.cssSelector("iframe[src*='recaptcha']")).isEmpty();
     }
 
     public boolean isSecurityMessagePresent() {
-        return this.driver.findElements(By.xpath("//*[contains(text(), 'security') or contains(text(), 'captcha') or contains(text(), 'verify')]")).size() > 0;
+        return !this.driver.findElements(By.xpath("//*[contains(text(), 'security') or contains(text(), 'captcha') or contains(text(), 'verify')]")).isEmpty();
     }
 
     public void clickAccountIcon() {
-        WebElement accountIcon = wait.until(ExpectedConditions.elementToBeClickable(By.id("loginMenu")));
-        accountIcon.click();
+        this.wait.until(ExpectedConditions.visibilityOf(this.accountIcon));
+        this.accountIcon.click();
     }
 
     public void acceptCookiesIfPresent() {
         try {
-            WebElement acceptCookies = wait.until(ExpectedConditions.elementToBeClickable(By.id("onetrust-accept-btn-handler")));
-            acceptCookies.click();
+            this.wait.until(ExpectedConditions.visibilityOf(this.acceptCoockies));
+            this.acceptCoockies.click();
         } catch (TimeoutException ignored) {}
     }
 }
