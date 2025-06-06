@@ -1,7 +1,6 @@
 package com.stv.factory.factorypages;
 
 import com.stv.factory.core.drivers.MyDriver;
-import com.stv.factory.utils.ConfigReader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,7 +17,7 @@ public class RegisterPage {
     }
 
     public void waitPage() {
-        this.wait.until(ExpectedConditions.urlContains(ConfigReader.get("register.url")));
+        this.wait.until(ExpectedConditions.urlContains(System.getProperty("register.url")));
     }
 
     public void navigateBack() {

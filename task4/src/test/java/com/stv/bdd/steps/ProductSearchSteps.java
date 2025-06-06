@@ -3,7 +3,6 @@ package com.stv.bdd.steps;
 import com.stv.factory.core.drivers.MyDriver;
 import com.stv.factory.factorypages.HomePage;
 import com.stv.factory.factorypages.ProductListPage;
-import com.stv.factory.utils.ConfigReader;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,7 +17,7 @@ public class ProductSearchSteps {
     @Given("the user is on the homepage")
     public void theUserIsOnTheHomepage() {
         this.driver = MyDriver.getDriver();
-        this.driver.get(ConfigReader.get("base.url"));
+        this.driver.get(System.getProperty("base.url"));
         this.driver.manage().window().maximize();
 
         this.homePage = new HomePage(this.driver);
