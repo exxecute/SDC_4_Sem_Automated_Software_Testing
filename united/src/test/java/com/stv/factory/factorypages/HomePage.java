@@ -101,10 +101,12 @@ public class HomePage {
     }
 
     public boolean searchButtonClick() {
-        if(this.wait.until(ExpectedConditions.visibilityOf(this.searchButton)) != null) {
+        try {
+            this.wait.until(ExpectedConditions.visibilityOf(this.searchButton));
             this.searchButton.click();
             return true;
+        } catch (TimeoutException e) {
+            return false;
         }
-        return false;
     }
 }

@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 @CucumberOptions(
-        features = "src/test/java/com/stv/features/productSearch.feature",
+        features = "src/test/java/com/stv/features/productSearchButton.feature",
         glue = "com.stv.bdd.steps"
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
