@@ -1,20 +1,14 @@
 package com.stv.factory.factorypages;
 
-import com.stv.factory.core.drivers.MyDriver;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
+import java.util.List;
 import java.util.Objects;
 
-public class ProductListPage {
+public class ProductListPage extends BasePage {
     private final static String DHB_CATEGORY_NAME = "Dhb";
-    private WebDriver driver;
-    private WebDriverWait wait;
-
     private String element;
 
     @FindBy(id = "lblCategoryHeader")
@@ -29,18 +23,25 @@ public class ProductListPage {
     @FindBy(css = "a[title='Home page'][href='/']")
     private WebElement homePageLogo;
 
+    @FindBy(css = "#navlist > li")
+    private List<WebElement> productItems;
+
     public ProductListPage() {
-        this.driver = MyDriver.getDriver();
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-        PageFactory.initElements(driver, this);
+        super(3);
+    }
+
+    public boolean setElement(final String element) {
+        this.element = element;
+        return true;
     }
 
     public boolean isDhbCategory() {
         return Objects.equals(categoryHeader.getText(), DHB_CATEGORY_NAME);
     }
 
-    public void scrollBottom() {
+    public boolean scrollBottom() {
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
+        return true;
     }
 
     public boolean isPaginationVisible() {
@@ -52,8 +53,13 @@ public class ProductListPage {
         }
     }
 
-    public void paginationNextClick() {
-        this.paginationNext.click();
+    public boolean paginationNextClick() {
+        try {
+            this.paginationNext.click();
+            return true;
+        } catch (RuntimeException e) {
+            return false;
+        }
     }
 
     public boolean isOnTop() {
@@ -65,11 +71,24 @@ public class ProductListPage {
         }
     }
 
-    public void goMainPage() {
+    public boolean goMainPage() {
         JavascriptExecutor js = (JavascriptExecutor) this.driver;
         js.executeScript("document.getElementById('HeaderGroup').style.display='block';");
 
         js.executeScript("arguments[0].click();", this.homePageLogo);
+        return true;
     }
 
+    public boolean isRelevantItems() {
+        return productItems.stream()
+                .anyMatch(p -> {
+                    String liName = p.getAttribute("li-name").toLowerCase();
+                    for (String word : this.element.toLowerCase().split("\\s+")) {
+                        if (liName.contains(word)) {
+                            return true;
+                        }
+                    }
+                    return false;
+                });
+    }
 }
