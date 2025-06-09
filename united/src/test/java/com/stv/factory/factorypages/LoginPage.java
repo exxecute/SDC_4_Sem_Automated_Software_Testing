@@ -1,5 +1,6 @@
 package com.stv.factory.factorypages;
 
+import com.stv.factory.utils.ConfigReader;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,7 +23,7 @@ public class LoginPage extends BasePage {
 
     public LoginPage() {
         super(3);
-        this.driver.get(System.getProperty("base.url"));
+        this.driver.get(ConfigReader.getInstance().getData("base.url"));
         this.driver.manage().window().maximize();
     }
 
