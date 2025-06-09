@@ -1,5 +1,6 @@
 package com.stv.bdd.steps;
 
+import com.stv.factory.factorypages.HomePage;
 import com.stv.factory.factorypages.LoginPage;
 import com.stv.factory.factorypages.RegisterPage;
 import com.stv.factory.utils.Hook;
@@ -14,10 +15,11 @@ public class BruteForceSteps {
 
     @Given("the user is on the login page")
     public void theUserIsOnTheLoginPage() {
+        HomePage homePage = new HomePage();
+        homePage.acceptCookiesIfPresent();
+        homePage.clickAccountIcon();
         this.registerPage = new RegisterPage();
         this.loginPage = new LoginPage();
-        this.loginPage.acceptCookiesIfPresent();
-        this.loginPage.clickAccountIcon();
     }
     
     @When("the user enters new emails several times")

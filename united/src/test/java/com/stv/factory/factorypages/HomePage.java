@@ -6,7 +6,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.sql.Time;
 import java.util.Objects;
 
 public class HomePage extends BasePage {
@@ -16,8 +15,8 @@ public class HomePage extends BasePage {
     @FindBy(css = "a[href='/dhb']")
     private WebElement availableNowButton;
 
-    @FindBy(id = "topMenu")
-    private WebElement topMenu;
+    @FindBy(id = "loginMenu")
+    private WebElement accountIcon;
 
     @FindBy(linkText = "Careers")
     private WebElement careersLink;
@@ -130,6 +129,16 @@ public class HomePage extends BasePage {
         try {
             this.wait.until(ExpectedConditions.visibilityOf(this.searchButton));
             this.searchButton.click();
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
+
+    public boolean clickAccountIcon() {
+        try {
+            this.wait.until(ExpectedConditions.visibilityOf(this.accountIcon));
+            this.accountIcon.click();
             return true;
         } catch (TimeoutException e) {
             return false;

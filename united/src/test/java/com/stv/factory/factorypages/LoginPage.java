@@ -12,9 +12,6 @@ public class LoginPage extends BasePage {
     @FindBy(id = "emailSubmit")
     private WebElement emailSubmitButton;
 
-    @FindBy(id = "loginMenu")
-    private WebElement accountIcon;
-
     @FindBy(id = "onetrust-accept-btn-handler")
     private WebElement acceptCookies;
 
@@ -23,8 +20,6 @@ public class LoginPage extends BasePage {
 
     public LoginPage() {
         super(3);
-        this.driver.get(ConfigReader.getInstance().getData("base.url"));
-        this.driver.manage().window().maximize();
     }
 
     public boolean enterEmail(final String email) {
@@ -51,26 +46,6 @@ public class LoginPage extends BasePage {
     public boolean isCaptchaPresented() {
         try {
             this.wait.until(ExpectedConditions.visibilityOf(this.captcha));
-            return true;
-        } catch (TimeoutException e) {
-            return false;
-        }
-    }
-
-    public boolean clickAccountIcon() {
-        try {
-            this.wait.until(ExpectedConditions.visibilityOf(this.accountIcon));
-            this.accountIcon.click();
-            return true;
-        } catch (TimeoutException e) {
-            return false;
-        }
-    }
-
-    public boolean acceptCookiesIfPresent() {
-        try {
-            this.wait.until(ExpectedConditions.visibilityOf(this.acceptCookies));
-            this.acceptCookies.click();
             return true;
         } catch (TimeoutException e) {
             return false;
