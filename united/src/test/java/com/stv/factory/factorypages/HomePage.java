@@ -1,5 +1,6 @@
 package com.stv.factory.factorypages;
 
+import com.stv.factory.utils.ConfigReader;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -35,7 +36,7 @@ public class HomePage extends BasePage {
 
     public HomePage() {
         super(5);
-        this.driver.get(System.getProperty("base.url"));
+        this.driver.get(ConfigReader.getInstance().getData("base.url"));
         this.driver.manage().window().maximize();
     }
 
@@ -52,7 +53,7 @@ public class HomePage extends BasePage {
     }
 
     public boolean isMainPage() {
-        return Objects.equals(driver.getCurrentUrl(), System.getProperty("base.url"));
+        return Objects.equals(driver.getCurrentUrl(), ConfigReader.getInstance().getData("base.url"));
     }
 
     public boolean isHeaderGroupVisible() {
