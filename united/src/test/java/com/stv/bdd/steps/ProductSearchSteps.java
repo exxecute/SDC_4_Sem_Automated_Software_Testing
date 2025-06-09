@@ -18,6 +18,7 @@ public class ProductSearchSteps {
     @When("the user searches for {string}")
     public void theUserSearchesFor(String searchTerm) {
         this.homePage.getSearchBox(searchTerm);
+        this.homePage.enterKeyToSearchBox();
         this.productListPage = new ProductListPage();
         this.productListPage.setElement(searchTerm);
     }

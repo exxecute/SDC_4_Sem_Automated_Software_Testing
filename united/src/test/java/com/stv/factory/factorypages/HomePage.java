@@ -100,6 +100,15 @@ public class HomePage {
         this.searchBox.sendKeys(element);
     }
 
+    public boolean enterKeyToSearchBox() {
+        try {
+            this.searchBox.sendKeys(Keys.ENTER);
+            return true;
+        } catch (RuntimeException e) {
+            return false;
+        }
+    }
+
     public boolean searchButtonClick() {
         try {
             this.wait.until(ExpectedConditions.visibilityOf(this.searchButton));
