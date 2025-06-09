@@ -2,6 +2,8 @@ package com.stv.bdd.steps;
 
 import com.stv.factory.factorypages.LoginPage;
 import com.stv.factory.factorypages.RegisterPage;
+import com.stv.factory.utils.Hook;
+import io.cucumber.java.After;
 import io.cucumber.java.en.*;
 import org.testng.Assert;
 
@@ -35,5 +37,10 @@ public class BruteForceSteps {
     @Then("the login should be blocked or an additional security measure should be presented")
     public void theLoginShouldBeBlockedOrAnAdditionalSecurityMeasureShouldBePresented() {
         Assert.assertTrue(this.loginPage.isCaptchaPresented(), "Expected CAPTCHA or security measure was not detected. ");
+    }
+
+    @After
+    public void close(){
+        Hook.quitDriver();
     }
 }

@@ -2,6 +2,8 @@ package com.stv.bdd.steps;
 
 import com.stv.factory.factorypages.HomePage;
 import com.stv.factory.factorypages.ProductListPage;
+import com.stv.factory.utils.Hook;
+import io.cucumber.java.After;
 import io.cucumber.java.en.*;
 import org.testng.Assert;
 
@@ -34,5 +36,10 @@ public class ProductSearchSteps {
     @Then("the product list should contain relevant items")
     public void theProductListShouldContainRelevantItems() {
         Assert.assertTrue(this.productListPage.isRelevantItems(), "Not contains relevant items");
+    }
+
+    @After
+    public void close(){
+        Hook.quitDriver();
     }
 }
