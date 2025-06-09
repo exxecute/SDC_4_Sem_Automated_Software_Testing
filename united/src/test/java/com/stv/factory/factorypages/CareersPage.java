@@ -22,7 +22,12 @@ public class CareersPage extends BasePage {
         }
     }
 
-    public void browserGoBack() {
-        this.driver.navigate().back();
+    public boolean browserGoBack() {
+        try {
+            this.driver.navigate().back();
+            return true;
+        } catch (RuntimeException e) {
+            return false;
+        }
     }
 }

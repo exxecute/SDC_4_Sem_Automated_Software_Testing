@@ -5,6 +5,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.sql.Time;
 import java.util.Objects;
 
 public class HomePage extends BasePage {
@@ -38,11 +39,16 @@ public class HomePage extends BasePage {
         this.driver.manage().window().maximize();
     }
 
-    public void scrollToAvailableNowButtonAndClick() {
-        Actions actions = new Actions(this.driver);
-        actions.moveToElement(this.availableNowButton);
-        this.wait.until(ExpectedConditions.visibilityOf(this.availableNowButton));
-        this.availableNowButton.click();
+    public boolean scrollToAvailableNowButtonAndClick() {
+        try {
+            Actions actions = new Actions(this.driver);
+            actions.moveToElement(this.availableNowButton);
+            this.wait.until(ExpectedConditions.visibilityOf(this.availableNowButton));
+            this.availableNowButton.click();
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
 
     public boolean isMainPage() {
@@ -58,19 +64,28 @@ public class HomePage extends BasePage {
         }
     }
 
-    public void acceptCookiesIfPresent() {
+    public boolean acceptCookiesIfPresent() {
         try {
             this.wait.until(ExpectedConditions.visibilityOf(this.acceptCookies));
             this.acceptCookies.click();
-        } catch (TimeoutException ignored) {}
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
 
-    public void scrollBottom() {
+    public boolean scrollBottom() {
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
+        return true;
     }
 
-    public void careersClick() {
-        this.careersLink.click();
+    public boolean careersClick() {
+        try {
+            this.careersLink.click();
+            return true;
+        } catch (RuntimeException e) {
+            return false;
+        }
     }
 
     public boolean isCareersVisible() {
@@ -82,13 +97,23 @@ public class HomePage extends BasePage {
         }
     }
 
-    public void footerLogoClick() {
-        this.footerHomePage.click();
+    public boolean footerLogoClick() {
+        try {
+            this.footerHomePage.click();
+            return true;
+        } catch (RuntimeException e) {
+            return false;
+        }
     }
 
-    public void getSearchBox(final String element) {
-        this.wait.until(ExpectedConditions.visibilityOf(this.searchBox));
-        this.searchBox.sendKeys(element);
+    public boolean getSearchBox(final String element) {
+        try {
+            this.wait.until(ExpectedConditions.visibilityOf(this.searchBox));
+            this.searchBox.sendKeys(element);
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
 
     public boolean enterKeyToSearchBox() {
