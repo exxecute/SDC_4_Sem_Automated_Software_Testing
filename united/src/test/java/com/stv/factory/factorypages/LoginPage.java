@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.sql.Time;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public class LoginPage {
     private WebElement acceptCookies;
 
     @FindBy(css = "iframe[src*='recaptcha']")
-    List<WebElement> captchas = new ArrayList<>();
+    private WebElement captcha;
 
     public LoginPage() {
         this.driver = MyDriver.getDriver();
@@ -50,9 +51,12 @@ public class LoginPage {
     }
 
     public boolean isCaptchaPresented() {
-        this.captchas.clear();
-        this.captchas.addAll(driver.findElements(By.cssSelector("iframe[src*='recaptcha']")));
-        return this.captchas.size() > 1;
+        try {
+            this.wait.until(ExpectedConditions.visibilityOf(this.captcha));
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
 
     public void clickAccountIcon() {

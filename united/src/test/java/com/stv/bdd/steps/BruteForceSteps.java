@@ -24,14 +24,10 @@ public class BruteForceSteps {
             this.loginPage.enterEmail(NEW_EMAIL);
             this.loginPage.clickEmailSubmitButton();
 
-            boolean isCaptchaPresent = this.loginPage.isCaptchaPresented();
-
-            if (isCaptchaPresent) {
-                System.out.println("CAPTCHA detected — skipping further input.");
+            if (!this.registerPage.isRegisterPage()) {
                 return;
             }
 
-            this.registerPage.waitPage();
             this.registerPage.navigateBack();
         }
     }
