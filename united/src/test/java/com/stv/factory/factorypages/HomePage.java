@@ -32,7 +32,7 @@ public class HomePage {
 
     @FindBy(id = "HeaderGroup")
     private WebElement headerGroup;
-    
+
     @FindBy(id = "txtSearch")
     private WebElement searchBox;
 
@@ -98,6 +98,13 @@ public class HomePage {
     public void getSearchBox(final String element) {
         this.wait.until(ExpectedConditions.visibilityOf(this.searchBox));
         this.searchBox.sendKeys(element);
-        this.searchButton.click();
+    }
+
+    public boolean searchButtonClick() {
+        if(this.wait.until(ExpectedConditions.visibilityOf(this.searchButton)) != null) {
+            this.searchButton.click();
+            return true;
+        }
+        return false;
     }
 }

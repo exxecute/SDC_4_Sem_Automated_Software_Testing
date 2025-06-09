@@ -25,6 +25,7 @@ public class ProductSearchSteps {
     @When("the user searches for {string} and click search button")
     public void theUserSearchesForAndClickSearchButton(String searchTerm) {
         this.homePage.getSearchBox(searchTerm);
+        Assert.assertTrue(this.homePage.searchButtonClick(), "Not implemented search button yet");
         this.productListPage = new ProductListPage();
         this.productListPage.setElement(searchTerm);
     }
