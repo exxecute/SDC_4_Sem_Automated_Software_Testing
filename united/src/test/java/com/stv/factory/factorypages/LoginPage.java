@@ -26,15 +26,25 @@ public class LoginPage extends BasePage {
         this.driver.manage().window().maximize();
     }
 
-    public void enterEmail(final String email) {
-        this.wait.until(ExpectedConditions.visibilityOf(this.emailField));
-        this.emailField.clear();
-        this.emailField.sendKeys(email);
+    public boolean enterEmail(final String email) {
+        try {
+            this.wait.until(ExpectedConditions.visibilityOf(this.emailField));
+            this.emailField.clear();
+            this.emailField.sendKeys(email);
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
 
-    public void clickEmailSubmitButton() {
-        this.wait.until(ExpectedConditions.visibilityOf(this.emailSubmitButton));
-        this.emailSubmitButton.click();
+    public boolean clickEmailSubmitButton() {
+        try {
+            this.wait.until(ExpectedConditions.visibilityOf(this.emailSubmitButton));
+            this.emailSubmitButton.click();
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
 
     public boolean isCaptchaPresented() {
@@ -46,15 +56,23 @@ public class LoginPage extends BasePage {
         }
     }
 
-    public void clickAccountIcon() {
-        this.wait.until(ExpectedConditions.visibilityOf(this.accountIcon));
-        this.accountIcon.click();
+    public boolean clickAccountIcon() {
+        try {
+            this.wait.until(ExpectedConditions.visibilityOf(this.accountIcon));
+            this.accountIcon.click();
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
 
-    public void acceptCookiesIfPresent() {
+    public boolean acceptCookiesIfPresent() {
         try {
             this.wait.until(ExpectedConditions.visibilityOf(this.acceptCookies));
             this.acceptCookies.click();
-        } catch (TimeoutException ignored) {}
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
 }

@@ -30,16 +30,18 @@ public class ProductListPage extends BasePage {
         super(3);
     }
 
-    public void setElement(final String element) {
+    public boolean setElement(final String element) {
         this.element = element;
+        return true;
     }
 
     public boolean isDhbCategory() {
         return Objects.equals(categoryHeader.getText(), DHB_CATEGORY_NAME);
     }
 
-    public void scrollBottom() {
+    public boolean scrollBottom() {
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
+        return true;
     }
 
     public boolean isPaginationVisible() {
@@ -51,8 +53,13 @@ public class ProductListPage extends BasePage {
         }
     }
 
-    public void paginationNextClick() {
-        this.paginationNext.click();
+    public boolean paginationNextClick() {
+        try {
+            this.paginationNext.click();
+            return true;
+        } catch (RuntimeException e) {
+            return false;
+        }
     }
 
     public boolean isOnTop() {
@@ -64,11 +71,12 @@ public class ProductListPage extends BasePage {
         }
     }
 
-    public void goMainPage() {
+    public boolean goMainPage() {
         JavascriptExecutor js = (JavascriptExecutor) this.driver;
         js.executeScript("document.getElementById('HeaderGroup').style.display='block';");
 
         js.executeScript("arguments[0].click();", this.homePageLogo);
+        return true;
     }
 
     public boolean isRelevantItems() {

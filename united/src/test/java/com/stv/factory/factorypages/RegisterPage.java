@@ -22,7 +22,12 @@ public class RegisterPage extends BasePage {
         }
     }
 
-    public void navigateBack() {
-        this.driver.navigate().back();
+    public boolean navigateBack() {
+        try {
+            this.driver.navigate().back();
+            return true;
+        } catch (RuntimeException e) {
+            return false;
+        }
     }
 }
