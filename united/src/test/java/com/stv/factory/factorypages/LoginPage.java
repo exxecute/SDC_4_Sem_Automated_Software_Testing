@@ -1,21 +1,10 @@
 package com.stv.factory.factorypages;
 
-import com.stv.factory.core.drivers.MyDriver;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.sql.Time;
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
-
-public class LoginPage {
-    private WebDriver driver;
-    private WebDriverWait wait;
-
+public class LoginPage extends BasePage {
     @FindBy(id = "Input_EmailAddress")
     private WebElement emailField;
 
@@ -32,11 +21,9 @@ public class LoginPage {
     private WebElement captcha;
 
     public LoginPage() {
-        this.driver = MyDriver.getDriver();
+        super(3);
         this.driver.get(System.getProperty("base.url"));
         this.driver.manage().window().maximize();
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-        PageFactory.initElements(driver, this);
     }
 
     public void enterEmail(final String email) {
