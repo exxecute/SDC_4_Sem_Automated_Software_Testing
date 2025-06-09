@@ -32,6 +32,12 @@ public class HomePage {
 
     @FindBy(id = "HeaderGroup")
     private WebElement headerGroup;
+    
+    @FindBy(id = "txtSearch")
+    private WebElement searchBox;
+
+    @FindBy(id = "searchButton")
+    private WebElement searchButton;
 
     public HomePage() {
         this.driver = MyDriver.getDriver();
@@ -87,5 +93,11 @@ public class HomePage {
 
     public void footerLogoClick() {
         this.footerHomePage.click();
+    }
+
+    public void getSearchBox(final String element) {
+        this.wait.until(ExpectedConditions.visibilityOf(this.searchBox));
+        this.searchBox.sendKeys(element);
+        this.searchButton.click();
     }
 }

@@ -22,6 +22,13 @@ public class ProductSearchSteps {
         this.productListPage.setElement(searchTerm);
     }
 
+    @When("the user searches for {string} and click search button")
+    public void theUserSearchesForAndClickSearchButton(String searchTerm) {
+        this.homePage.getSearchBox(searchTerm);
+        this.productListPage = new ProductListPage();
+        this.productListPage.setElement(searchTerm);
+    }
+
     @Then("the product list should contain relevant items")
     public void theProductListShouldContainRelevantItems() {
         Assert.assertTrue(this.productListPage.isRelevantItems(), "Not contains relevant items");

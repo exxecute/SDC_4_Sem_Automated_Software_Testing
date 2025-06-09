@@ -15,6 +15,8 @@ public class ProductListPage {
     private WebDriver driver;
     private WebDriverWait wait;
 
+    private String element;
+
     @FindBy(id = "lblCategoryHeader")
     private WebElement categoryHeader;
 
@@ -69,4 +71,5 @@ public class ProductListPage {
 
         js.executeScript("arguments[0].click();", this.homePageLogo);
     }
+
 }
