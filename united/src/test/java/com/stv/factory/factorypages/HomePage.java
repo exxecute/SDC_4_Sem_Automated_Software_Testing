@@ -100,11 +100,22 @@ public class HomePage {
         this.searchBox.sendKeys(element);
     }
 
+    public boolean enterKeyToSearchBox() {
+        try {
+            this.searchBox.sendKeys(Keys.ENTER);
+            return true;
+        } catch (RuntimeException e) {
+            return false;
+        }
+    }
+
     public boolean searchButtonClick() {
-        if(this.wait.until(ExpectedConditions.visibilityOf(this.searchButton)) != null) {
+        try {
+            this.wait.until(ExpectedConditions.visibilityOf(this.searchButton));
             this.searchButton.click();
             return true;
+        } catch (TimeoutException e) {
+            return false;
         }
-        return false;
     }
 }

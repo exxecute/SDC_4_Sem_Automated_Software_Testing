@@ -35,6 +35,7 @@ public class ProductListPage {
     public ProductListPage() {
         this.driver = MyDriver.getDriver();
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+
         PageFactory.initElements(driver, this);
     }
 
