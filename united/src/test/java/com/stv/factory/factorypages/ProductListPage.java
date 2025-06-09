@@ -1,21 +1,15 @@
 package com.stv.factory.factorypages;
 
-import com.stv.factory.core.drivers.MyDriver;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.Objects;
 
-public class ProductListPage {
+public class ProductListPage extends BasePage {
     private final static String DHB_CATEGORY_NAME = "Dhb";
     private String element;
-    private WebDriver driver;
-    private WebDriverWait wait;
 
     @FindBy(id = "lblCategoryHeader")
     private WebElement categoryHeader;
@@ -33,10 +27,7 @@ public class ProductListPage {
     private List<WebElement> productItems;
 
     public ProductListPage() {
-        this.driver = MyDriver.getDriver();
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-
-        PageFactory.initElements(driver, this);
+        super(3);
     }
 
     public void setElement(final String element) {
