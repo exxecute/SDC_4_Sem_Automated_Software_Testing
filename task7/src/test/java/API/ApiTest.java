@@ -16,7 +16,7 @@ public class ApiTest {
     private final static String BASE_URL = "https://jsonplaceholder.typicode.com/";
 
     @Test
-    @DisplayName("GET /posts returns a list of 5000 photos with valid IDs")
+    @DisplayName("GET /posts returns a list of 5000 photos")
     public void testGetAllPhotos5000Responses() {
         Response response = given()
                 .baseUri(BASE_URL)
